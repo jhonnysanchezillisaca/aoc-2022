@@ -1,4 +1,3 @@
-console.log('hi from deno');
 
 const input = await Deno.readTextFile("./day-1/input.txt");
 
@@ -15,4 +14,9 @@ groups.forEach(g => {
 
 const totalCaloriesPerElf = caloriesPerElf.map(calories => calories.reduce((previous, current) => previous + current));
 const maxCalories = Math.max(...totalCaloriesPerElf);
-console.table(maxCalories);
+console.table(`Elf with most calories has ${maxCalories} calories`);
+
+// sort array in reverse order
+const reverseSortedTotalCaloriesPerElf = totalCaloriesPerElf.sort((a, b) => b - a);
+const totalCaloriesTopThreeElves = reverseSortedTotalCaloriesPerElf.slice(0, 3).reduce((previous, current) => previous + current);
+console.log(`top three elves have ${totalCaloriesTopThreeElves} calories`);
